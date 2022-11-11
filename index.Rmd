@@ -22,6 +22,7 @@ https://www.cnbc.com/2022/04/13/how-much-gas-cost-every-year-since-1978.html
 
 Congressional Election Data:
 https://docs.google.com/spreadsheets/d/1IfVf6tRtdyRHWzMCaCmHJyvYBGqEUER5BMeL26knLrQ/edit?usp=sharing
+<<<<<<< HEAD
 
 ## Standardized gas prices and incumbent vote percent over time
 
@@ -74,3 +75,5 @@ elections_and_prices_sd |>
 ```{r print-code, ref.label=knitr::all_labels(), echo = TRUE, eval=FALSE}
 
 ```
+=======
+>>>>>>> 97ee3a75f86099dfaa466fe08c16f259f3791192
