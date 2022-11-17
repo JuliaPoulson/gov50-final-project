@@ -19,7 +19,7 @@ Gas Price Data:
 https://www.cnbc.com/2022/04/13/how-much-gas-cost-every-year-since-1978.html
 
 Congressional Election Data:
-https://docs.google.com/spreadsheets/d/1IfVf6tRtdyRHWzMCaCmHJyvYBGqEUER5BMeL26knLrQ/edit?usp=sharing
+https://library-cqpress-com.ezp-prod1.hul.harvard.edu/elections/
 
 
 ## Standardized Gas Prices and Incumbent Vote Percent Over Time
