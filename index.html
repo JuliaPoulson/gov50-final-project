@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Gas Prices.csv","house-voting-history.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Gas Prices.csv","house-voting-history.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1520,39 +1520,102 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="project-thoughts">Project thoughts</h2>
 <p>I am interested in exploring data related to the midterm election in an effort to determine the relationship between election indicators (gdp, inflation, presidential approval, etc) and election results. I am working through the HPR Tech team on a midterm election prediction model, and I am hoping to use the data acquired through that project to look at relationships between multiple factors and election results for the final project in this course.</p>
 <h2 id="proposal">Proposal</h2>
-<p>In my final project, I will be attempting to see how strongly gas prices correlate to election results using inflation-adjusted gas prices and congressional election data (displaying seats won/lost for each party, as well as the party holding the presidency for each election) from the past 40 years. I predict that gas prices have a strong inverse correlation with the tendency of populations to elect incumbent parties because peoples’ dissatisfaction with high gas prices is often directly aimed at the party in power, regardless of political affiliation. For this to be true, the regression between the amount of seats won by the current presidential party and the price of gas should have a significant negative correlation coefficient. I will also analyze the gas price data against Republican/Democratic seats won in order to see if gas prices are actually more strongly indicative of the party people elect, as opposed to if they choose to vote for the incumbent party. If this regression shows a strong correlation, or if my previous regression shows a positive or non-correlation between gas prices and incumbent party political success, my theory is likely wrong.</p>
+<p>In my final project, I will be attempting to see how strongly gas prices correlate to election results using inflation-adjusted gas prices and congressional election data (displaying vote share for each party, as well as the party holding the presidency for each election) from the past 40 years. I predict that gas prices have a strong inverse correlation with the tendency of populations to elect incumbent parties because peoples’ dissatisfaction with high gas prices is often directly aimed at the party in power, regardless of political affiliation. For this to be true, the regression between the percentage of vote earned by the current presidential party and the price of gas should have a significant negative correlation coefficient. I will also analyze the gas price data against Republican/Democratic vote share in order to see if gas prices are actually more strongly indicative of the party people elect, as opposed to if they choose to vote for the incumbent party. If this regression shows a strong correlation, or if my previous regression shows a positive or non-correlation between gas prices and incumbent party political success, my theory is likely wrong.</p>
 <p>Gas Price Data:
 <a href="https://www.cnbc.com/2022/04/13/how-much-gas-cost-every-year-since-1978.html" class="uri">https://www.cnbc.com/2022/04/13/how-much-gas-cost-every-year-since-1978.html</a></p>
 <p>Congressional Election Data:
 <a href="https://docs.google.com/spreadsheets/d/1IfVf6tRtdyRHWzMCaCmHJyvYBGqEUER5BMeL26knLrQ/edit?usp=sharing" class="uri">https://docs.google.com/spreadsheets/d/1IfVf6tRtdyRHWzMCaCmHJyvYBGqEUER5BMeL26knLrQ/edit?usp=sharing</a></p>
-<h2 id="standardized-gas-prices-and-incumbent-vote-percent-over-time">Standardized gas prices and incumbent vote percent over time</h2>
+<h2 id="standardized-gas-prices-and-incumbent-vote-percent-over-time">Standardized Gas Prices and Incumbent Vote Percent Over Time</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>elections_and_prices_sd</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>gas_price_sd</span>, color <span class='op'>=</span> <span class='st'>"Gas Prices"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>incumbent_party_pct_sd</span>, color <span class='op'>=</span> <span class='st'>"Incumbent Party Success"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"Z-Score"</span>,  </span>
-<span>       title <span class='op'>=</span> <span class='st'>"Standardized Gas Prices and Incumbent Electoral Success Over Time"</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span><span class='st'>""</span>, </span>
-<span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Gas Prices"</span>, <span class='st'>"Incumbent Party Success"</span><span class='op'>)</span>,</span>
-<span>                      values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"purple"</span>, <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
+<h2 id="gas-prices-and-incumbent-party-vote-percentage-correlation">Gas Prices and Incumbent Party Vote Percentage Correlation</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h2 id="gas-price-and-incumbent-party-vote-percentage-correlation-coefficient">Gas Price and Incumbent Party Vote Percentage Correlation Coefficient</h2>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-0.0202064</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This graph and related correlation coefficient demonstrate a very limited relationship between gas prices and the incumbent party vote share, a finding which goes against my original hypothesis. The correlation is negative, which I predicted, but it is so low (2%) that a hypothesis test would likely reveal a very high p-value that would disqualify any statistically significant relationship.</p>
+<h2 id="hypothesis-test">Hypothesis Test</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.962</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The hypothesis test reveals that there is a 99% chance that this correlation value could have been created by random chance in a world in which the two values have absolutely no correlation. Given this, we can certainly not reject the null hypothesis, and instead likely should accept it as the most likely outcome of the analysis.</p>
+<h1 id="now-i-will-attempt-the-same-experiment-with-vote-by-party-instead-of-incumbent-vote-percentage-in-order-to-compare-the-strength-of-the-two-relationships.">Now, I will attempt the same experiment with vote by party, instead of incumbent vote percentage in order to compare the strength of the two relationships.</h1>
+<h2 id="gas-prices-and-democratic-party-vote-percentage-correlation">Gas Prices and Democratic Party Vote Percentage Correlation</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
+<h2 id="gas-price-and-democratic-party-vote-percentage-correlation-coefficient">Gas Price and Democratic Party Vote Percentage Correlation Coefficient</h2>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.1461235</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This graph and related correlation coefficient demonstrate a slightly stronger relationship between gas prices and the democratic party vote share, with democrats on average receiving more votes on years with higher gas prices, a finding which goes against my original hypothesis. The correlation goes against my prediction that Democrats would be less likely to receive votes on years with high gas prices. The strength of the correlation is stronger than the incumbent party percentage, but a hypothesis test is still imperative in determining the statistical validity of the relationship</p>
+<h2 id="hypothesis-test-1">Hypothesis Test</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.428</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This hypothesis test reveals that there is a 42% chance that this correlation or stronger could be created by random chance in a scenario where the two variables have no correlation. Although this p-value is lower than the p-value for incumbent vote percentage, it is still far too high to be considered statistically significant when utilizing the traditional p-value benchmark metric of 0.05. Thus, according to my tests, neither of these relationships can be considered statistically significant and gas prices have not been proven to correlate to incumbent or democratic electoral success.</p>
 <h1 id="code">Code</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
-<span></span>
-<span></span>
-<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>gas_prices</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"Gas Prices.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>gas_prices</span></span>
 <span></span>
 <span><span class='va'>house_results_raw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"house-voting-history.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>house_results_raw</span></span>
 <span></span>
 <span><span class='va'>house_results</span> <span class='op'>&lt;-</span> <span class='va'>house_results_raw</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>R_seats</span>, <span class='va'>D_seats</span>, <span class='va'>Other_seats</span>, <span class='va'>R_totalvote_pct</span>, <span class='va'>D_totalvote_pct</span>, <span class='va'>Other_totalvote_pct</span>, <span class='va'>winner_party</span>, <span class='va'>president_party</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
@@ -1576,7 +1639,49 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>       title <span class='op'>=</span> <span class='st'>"Standardized Gas Prices and Incumbent Electoral Success Over Time"</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_colour_manual</a></span><span class='op'>(</span><span class='st'>""</span>, </span>
 <span>                      breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Gas Prices"</span>, <span class='st'>"Incumbent Party Success"</span><span class='op'>)</span>,</span>
-<span>                      values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"purple"</span>, <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>                      values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"purple"</span>, <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>elections_and_prices</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>`gas-price`</span>, y <span class='op'>=</span> <span class='va'>incumbent_party_pct</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Gas Prices"</span>, y <span class='op'>=</span> <span class='st'>"Incumbent Party Vote Percentage"</span>, title <span class='op'>=</span> <span class='st'>"Incumbent Party Vote Percent vs Gas Prices"</span><span class='op'>)</span></span>
+<span><span class='va'>correlation_coef</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>`gas-price`</span>, <span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>incumbent_party_pct</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>correlation_coef</span><span class='op'>)</span></span>
+<span><span class='va'>null_dist</span> <span class='op'>&lt;-</span> <span class='va'>elections_and_prices</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>incumbent_party_pct</span> <span class='op'>~</span> <span class='va'>`gas-price`</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"bootstrap"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"correlation"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='va'>null_dist</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>correlation_coef</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>p_val</span> <span class='op'>&lt;-</span> <span class='va'>null_dist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>correlation_coef</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>p_val</span><span class='op'>)</span></span>
+<span><span class='va'>elections_and_prices</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>`gas-price`</span>, y <span class='op'>=</span> <span class='va'>D_totalvote_pct</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Gas Prices"</span>, y <span class='op'>=</span> <span class='st'>"Democratic Party Vote Percentage"</span>, title <span class='op'>=</span> <span class='st'>"Democratic Party Vote Percent vs Gas Prices"</span><span class='op'>)</span></span>
+<span><span class='va'>correlation_coef_party</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>`gas-price`</span>, <span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>D_totalvote_pct</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>correlation_coef_party</span><span class='op'>)</span></span>
+<span><span class='va'>null_dist_party</span> <span class='op'>&lt;-</span> <span class='va'>elections_and_prices</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>D_totalvote_pct</span> <span class='op'>~</span> <span class='va'>`gas-price`</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"bootstrap"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"correlation"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='va'>null_dist_party</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>correlation_coef</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>p_val_party</span> <span class='op'>&lt;-</span> <span class='va'>null_dist_party</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>correlation_coef</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>p_val_party</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
