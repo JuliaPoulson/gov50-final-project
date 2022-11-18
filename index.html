@@ -1560,12 +1560,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.922</td>
+<td style="text-align: right;">0.97</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The hypothesis test reveals that there is a 99% chance that this correlation value could have been created by random chance in a world in which the two values have absolutely no correlation. Given this, we can certainly not reject the null hypothesis, and instead likely should accept it as the most likely outcome of the analysis.</p>
+<p>The hypothesis test reveals that there is a 97% chance that this correlation value could have been created by random chance in a world in which the two values have absolutely no correlation. Given this, we can certainly not reject the null hypothesis, and instead likely should accept it as the most likely outcome of the analysis.</p>
 <h1 id="now-i-will-attempt-the-same-experiment-with-vote-by-party-instead-of-incumbent-vote-percentage-in-order-to-compare-the-strength-of-the-two-relationships.">Now, I will attempt the same experiment with vote by party, instead of incumbent vote percentage in order to compare the strength of the two relationships.</h1>
 <h2 id="gas-prices-and-democratic-party-vote-percentage-correlation">Gas Prices and Democratic Party Vote Percentage Correlation</h2>
 <div class="layout-chunk" data-layout="l-body">
@@ -1598,12 +1598,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.396</td>
+<td style="text-align: right;">0.358</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>This hypothesis test reveals that there is a 42% chance that this correlation or stronger could be created by random chance in a scenario where the two variables have no correlation. Although this p-value is lower than the p-value for incumbent vote percentage, it is still far too high to be considered statistically significant when utilizing the traditional p-value benchmark metric of 0.05. Thus, according to my tests, neither of these relationships can be considered statistically significant and gas prices have not been proven to correlate to incumbent or democratic electoral success.</p>
+<p>This hypothesis test reveals that there is a 36% chance that this correlation or stronger could be created by random chance in a scenario where the two variables have no correlation. Although this p-value is lower than the p-value for incumbent vote percentage, it is still far too high to be considered statistically significant when utilizing the traditional p-value benchmark metric of 0.05. Thus, according to my tests, neither of these relationships can be considered statistically significant and gas prices have not been proven to correlate to incumbent or democratic electoral success.</p>
 <h1 id="code">Code</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1648,6 +1648,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span><span class='va'>correlation_coef</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>`gas-price`</span>, <span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>incumbent_party_pct</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>correlation_coef</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>01234</span><span class='op'>)</span></span>
 <span><span class='va'>null_dist</span> <span class='op'>&lt;-</span> <span class='va'>elections_and_prices</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>incumbent_party_pct</span> <span class='op'>~</span> <span class='va'>`gas-price`</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
@@ -1669,6 +1670,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span><span class='va'>correlation_coef_party</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>`gas-price`</span>, <span class='va'>elections_and_prices</span><span class='op'>$</span><span class='va'>D_totalvote_pct</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>correlation_coef_party</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>01234</span><span class='op'>)</span></span>
 <span><span class='va'>null_dist_party</span> <span class='op'>&lt;-</span> <span class='va'>elections_and_prices</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>D_totalvote_pct</span> <span class='op'>~</span> <span class='va'>`gas-price`</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
